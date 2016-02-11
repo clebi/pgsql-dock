@@ -1,0 +1,16 @@
+pgdata:
+  image: centos:7
+  volumes:
+    - "/var/lib/postgresql/data"
+  command: sh -c "while true; do echo "hello"; sleep 1d; done;"
+
+postgres:
+  image: postgres:9.4
+  volumes_from:
+    - pgdata
+  ports:
+    - 5432:5432
+  environment:
+    - POSTGRES_USER=admin
+    - POSTGRES_PASSWORD=dev
+
